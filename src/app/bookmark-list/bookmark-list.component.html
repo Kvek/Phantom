@@ -1,0 +1,28 @@
+
+TODO:ADD CSS
+<div [hidden]="!duplicate">
+  <h2>
+    <u>Bookmark already exists!</u>
+  </h2>
+</div>
+
+<div style="height:500px;border:1px solid">
+  <ul *ngIf="currBMView">
+    <li *ngFor="let item of currBMView; let i = index">
+      <span style="width:80%;display: inline-block;"> {{item}}</span>
+      <button (click)="removeBookMark(item)">x</button>
+      <button (click)="editBookMark(item)">Edit</button>
+      <div *ngIf="editBM && currEditBM == item" style="border:1px solid">
+        <form (ngSubmit)="updateBM(i, updateBookMark.value)" #updateBookMark="ngForm">
+          <input type="text" ngModel={{item}} name="item">
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </li>
+  </ul>
+</div>
+<button [disabled]="currentpage ==1" (click)="currentpage = currentpage-1; activePage(currentpage)" class="pagination">&laquo;</button>
+<div *ngFor="let page of pages" class="pagination">
+  <a (click)="activePage(page)" [ngClass]="{'isActive': currentpage ==page}">{{page}}</a>
+</div>
+<button [disabled]="currentpage ==pages.length" (click)="currentpage = currentpage+1; activePage(currentpage)" class="pagination">&raquo;</button>

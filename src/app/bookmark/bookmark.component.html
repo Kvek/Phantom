@@ -1,0 +1,10 @@
+<form [formGroup]="bookmarks" (ngSubmit)="onSubmit()">
+  <label for="">Bookmark:
+    <input type="text" name="" id="" formControlName="bookmark" class="bmInput">
+  </label>
+<button type="submit" [disabled]=!bookmarks.valid class="bmButton">Submit</button>
+</form>
+
+<div *ngIf="bookmark.invalid">
+  URL INVALID
+</div>

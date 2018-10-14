@@ -1,0 +1,11 @@
+.pagination {
+  display: inline-block;
+  padding: 3px;
+  color: black;
+  border: 1px solid;
+}
+
+.isActive {
+  background-color: rgb(212, 81, 81);
+  color: white;
+}

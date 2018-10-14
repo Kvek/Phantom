@@ -1,0 +1,13 @@
+.bmInput {
+  width: 80%;
+  border-radius: 20px;
+  line-height: 25px;
+  outline: none;
+  background: rgba(235, 229, 229, 0.815);
+  padding-left: 15px;
+  font-size: 15px;
+}
+
+.bmButton{
+    border-radius: 100px;
+}
