@@ -1,13 +1,160 @@
-.bmInput {
-  width: 80%;
-  border-radius: 20px;
-  line-height: 25px;
-  outline: none;
-  background: rgba(235, 229, 229, 0.815);
-  padding-left: 15px;
-  font-size: 15px;
+.bmDiv {
+  padding-top: 100px;
 }
 
-.bmButton{
-    border-radius: 100px;
+.fa-bookmark {
+  color: yellow;
+  display: block;
+  margin-bottom: 30px;
+}
+
+/* Bookmark Icon css */
+.c1 {
+  color: #F34337;
+}
+
+.c2 {
+  color: #E81E63;
+}
+
+.c3 {
+  color: #9C27B0;
+}
+
+.c4 {
+  color: #673AB7;
+}
+
+.c5 {
+  color: #3F51B5;
+}
+
+.c6 {
+  color: #2196F3;
+}
+
+.c7 {
+  color: #2BBCD4;
+}
+
+.c8 {
+  color: #4CAF50;
+}
+
+.c9 {
+  color: #8BC349;
+}
+
+.c10 {
+  color: #CDDC38;
+}
+
+.c11 {
+  color: #FEEA3C;
+}
+
+.c12 {
+  color: #FDC10A;
+}
+
+.c13 {
+  color: #FDC10A;
+}
+
+.c14 {
+  color: #209688;
+}
+
+
+mat-progress-bar {
+  margin: 0;
+  padding: 0;
+}
+
+.bmInput {
+  display: inline-block;
+  width: 50%;
+  height: 40px;
+  outline: none;
+  background: none;
+  font-size: 16px;
+  border: 2px solid #dbdbdb;
+  border-radius: 30px;
+  padding-bottom: 0;
+  text-indent: 20px;
+  color: grey;
+  margin-bottom: 30px;
+  margin-left: 100px;
+
+
+}
+
+.bmInput:focus {
+  border: 2px solid #00BDD1;
+}
+
+.inpError {
+  border: 1px solid red !important;
+}
+
+
+.showError {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: red;
+}
+
+.hideError {
+  display: none;
+
+}
+
+.actionButton {
+  display: block;
+  margin-top: 10px;
+}
+
+.bmButton {
+  margin-right: 15px;
+  width: 15%;
+  font-size: 16px;
+}
+
+.addBM {
+  background-color: #00ABEE;
+  color: white;
+}
+
+.addBM:hover {
+  opacity: .7;
+}
+
+.seeBM {
+  background-color: #00BDD1;
+  color: white;
+}
+
+.seeBM:hover {
+  opacity: .7;
+}
+
+.fa-check-circle {
+  color: #42A948;
+  margin-left: 5px;
+}
+
+.favorites {
+  display: none;
+
+}
+
+.favLable {
+  color: grey;
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
 }

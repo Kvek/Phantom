@@ -1,0 +1,28 @@
+.fa-grin-beam {
+  color: #FFCC63;
+  padding-bottom: 20px;
+}
+
+* {
+  color: grey;
+}
+
+.showDetails {
+  margin-top: 80px;
+}
+
+h1 {
+  padding: 10px;
+}
+
+.proceed {
+  margin-left: 10px;
+  background-color: #3F51B5;
+  color: white;
+}
+
+.back {
+
+  background-color: #F20E40;
+  color: white;
+}

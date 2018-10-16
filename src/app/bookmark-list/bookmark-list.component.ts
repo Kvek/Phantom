@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { BookmarkValidService } from "../bookmark-valid.service";
+import { MatSnackBar } from "@angular/material";
 
 @Component({
   selector: "app-bookmark-list",
@@ -7,86 +8,87 @@ import { BookmarkValidService } from "../bookmark-valid.service";
   styleUrls: ["./bookmark-list.component.css"]
 })
 export class BookmarkListComponent implements OnInit {
-  bookMarkList: string[] = [];
+  bookMarkList = [];
   editBM: boolean = false;
   currEditBM: string;
   duplicate = false;
   currBMView = [];
   pages = [];
   currentpage;
+  currentStyle;
 
-  // TODO: remove the one2Hundred array
-  one2Hundred = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    22,
-    23,
-    24
-  ];
-
-  constructor(private bookMarkServ: BookmarkValidService) {}
+  constructor(
+    private bookMarkServ: BookmarkValidService,
+    private snackbar: MatSnackBar
+  ) {}
   ngOnInit() {
-    // On page load retreive data
+    // generate a random css class
+
+    this.currentStyle = Math.floor(Math.random() * (6 - 1)) + 1;
+    console.log(this.currentStyle);
+    this.populateArr();
+    this.pageNumber();
+    // Set firstpage active on page load.
+    this.activePage(1);
+    this.getData();
+  }
+  // Populate 'bookMarkList' on page load
+  populateArr() {
     let data = localStorage.getItem("bookMarks");
     if (data != null) {
       this.bookMarkList = JSON.parse(data);
-    } else {
+    } else if (data == null) {
       this.bookMarkList.length = 0;
     }
-
-    // Calculate number of pages.
-    let numberOfPages = Math.ceil(this.one2Hundred.length / 20);
+  }
+  // Calculate number of pages.
+  pageNumber() {
+    let numberOfPages = Math.ceil(this.bookMarkList.length / 20);
     for (let i = 0; i < numberOfPages; i++) {
       this.pages.push(i + 1);
     }
-    // Set firstpage active on page load.
-    this.activePage(1);
+    return this.pages;
+  }
 
-    // Subscribe to observable to receive bookmark
+  // Subscribe to observable to receive bookmark
+  getData() {
     this.bookMarkServ.currentBookmark.subscribe(data => {
-      console.log(data);
-      // Checks for duplicates
-      if (this.bookMarkList.indexOf(data) == -1) {
-        this.bookMarkList.push(data);
-      } else {
-        this.duplicate = true;
-      }
+      this.bookMarkList.push(data);
+      console.log(this.bookMarkList);
       localStorage.setItem("bookMarks", JSON.stringify(this.bookMarkList));
     });
   }
+
   // Remove bookmark from list
   removeBookMark(bookMark) {
-    this.bookMarkList.splice(bookMark, 1);
-    localStorage.setItem("bookMarks", JSON.stringify(this.bookMarkList));
+    let conf = confirm("Are you sure?");
+    if (conf == true) {
+      this.bookMarkList.splice(bookMark, 1);
+      localStorage.setItem("bookMarks", JSON.stringify(this.bookMarkList));
+      // Angular Material Notification Component
+      this.snackbar.open("Deleted", "Dismiss", {
+        duration: 2000
+      });
+    } else return;
   }
+
   // Edit bookmark
   editBookMark(bookMark) {
     this.editBM = true;
     // sets edit to current bookmark
-    this.currEditBM = bookMark;
+    this.currEditBM = this.bookMarkList[bookMark];
   }
+
   // Update bookmark
   updateBM(index, bookmark) {
-    this.bookMarkList[index] = bookmark.item;
+    console.log(bookmark);
+    this.bookMarkList[index].bookmark = bookmark;
+    console.log(this.bookMarkList);
+
+    // Angular Material Notification Component
+    this.snackbar.open("Updated", "Dismiss", {
+      duration: 2000
+    });
     // resetting value to hide
     this.currEditBM = null;
     localStorage.setItem("bookMarks", JSON.stringify(this.bookMarkList));
@@ -95,8 +97,6 @@ export class BookmarkListComponent implements OnInit {
   // Activating the page on click
   activePage(page) {
     this.currentpage = page;
-    // TODO:remove oneHundred
-    // Slices the array into the required size
-    this.currBMView = this.one2Hundred.slice((page - 1) * 20, page * 20);
+    this.currBMView = this.bookMarkList.slice((page - 1) * 20, page * 20);
   }
 }

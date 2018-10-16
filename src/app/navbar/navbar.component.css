@@ -1,5 +1,34 @@
-nav {
-  display: block;
-  border:1px solid;
-  width:100%;
+.space {
+  flex: 1 1 auto;
+}
+
+.navbar {
+  background-color: #373740;
+  color: #FCFCFC;
+  border-bottom: 1px solid #FA4181;
+
+}
+
+.navbar h4 {
+  outline: none;
+  cursor: pointer;
+}
+
+i {
+  outline: none !important;
+  cursor: pointer;
+  color: #FCFCFC;
+  padding: 0 5px;
+}
+
+
+a {
+  color: #FCFCFC;
+  text-decoration-line: none;
+}
+
+.two {
+  background-color: #2BB980;
+  color: #FFFFFF;
+  border: 1 px solid #C90D60;
 }

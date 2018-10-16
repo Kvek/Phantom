@@ -1,11 +1,198 @@
+#bookmark {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+  margin: 0 auto;
+}
+
+#bookmark a {
+  text-decoration-line: none;
+  color: rgb(37, 37, 37);
+}
+
+#bookmark a:hover {
+  opacity: .7;
+}
+
+
+li {
+  list-style: none;
+}
+
+tbody tr:nth-child(odd) {
+  background: rgb(241, 241, 241)
+}
+
+.table {
+  height: 65vh;
+  margin: 5px;
+}
+
+.title {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  line-height: 40px;
+  margin-left: 100px;
+}
+
+thead {
+  border-bottom: 1px solid;
+  padding-bottom: 100px;
+}
+
+.tableData {
+  display: block;
+  text-align: left;
+  line-height: 40px;
+  padding-left: 20px;
+}
+
+
+
+
+.tableEditInput {
+  display: inline-block;
+  width: 70%;
+  margin-bottom: 5px;
+}
+
+.editInput {
+  width: 100%;
+  line-height: 40px;
+  outline: none;
+  font-size: 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 30px;
+  text-indent: 10px;
+  background: rgb(255, 255, 255);
+  margin-bottom: 10px;
+}
+
+.tableEditBut {
+  display: inline-block;
+  width: 25%;
+  margin-bottom: 5px;
+
+}
+
+.update {
+  /* margin-left: 10px; */
+  background-color: #4187E8;
+  border-radius: 20px;
+  color: white;
+}
+
+.cancel {
+  margin-left: 10px;
+  background-color: #F25C69;
+  border-radius: 20px;
+  color: white;
+}
+
+
+.navigate {
+  display: block;
+  text-align: center;
+  padding: 10px;
+}
+
 .pagination {
   display: inline-block;
-  padding: 3px;
   color: black;
-  border: 1px solid;
+  cursor: pointer;
+  outline: none;
+  padding: 8px 20px;
+}
+
+.pages:not(.isActive):hover {
+  background-color: #dadada;
 }
 
 .isActive {
-  background-color: rgb(212, 81, 81);
-  color: white;
+  background-color: rgb(0, 128, 248);
+}
+
+.navigate button {
+  font-size: 15px;
+  border: none;
+}
+
+.fas {
+  padding: 5px;
+  outline: none !important;
+  border: none;
+  cursor: pointer;
+}
+
+.fa-pen {
+  color: dodgerblue;
+}
+
+.fa-trash-alt {
+  color: rgb(236, 62, 18);
+}
+
+.fa-star {
+  color: orange;
+
+}
+
+.fa-trash-alt:hover {
+  opacity: .7;
+}
+
+.fa-pen:hover {
+  opacity: .7;
+}
+
+
+.one {
+  background-color: #00B986;
+  color: #00130E;
+}
+
+.two {
+  background-color: rgb(61, 212, 200);
+  color: rgb(68, 68, 68);
+}
+
+.three {
+  background-color: #FF665E;
+  color: #202124;
+}
+
+.four {
+  background-color: #B461F6;
+  color: #FFFFFF;
+}
+
+.five {
+  background-color: #FFCD5F;
+  color: #FFFFFF;
+}
+
+.six {
+  background-color: #69DFFC;
+  color: rgb(63, 63, 63);
+}
+
+.empty {
+  padding-top: 150px;
+  display: block;
+  margin: 0 auto;
+}
+
+.actionButton {
+  display: inline-block;
+  padding-top: 20px;
+  margin: 0 auto;
+  margin-left: -20px;
+}
+
+.actionButton button {
+  width: 150%;
+}
+
+h1 {
+  margin-left: 60px;
 }

@@ -1,10 +1,40 @@
-<form [formGroup]="bookmarks" (ngSubmit)="onSubmit()">
-  <label for="">Bookmark:
-    <input type="text" name="" id="" formControlName="bookmark" class="bmInput">
-  </label>
-<button type="submit" [disabled]=!bookmarks.valid class="bmButton">Submit</button>
-</form>
+<div>
+  <mat-progress-bar mode="indeterminate" *ngIf="showProgress"></mat-progress-bar>
+  <form [formGroup]="bookmarks" (ngSubmit)="onSubmit()">
 
-<div *ngIf="bookmark.invalid">
-  URL INVALID
+    <div class="bmDiv">
+      <i class="fas fa-bookmark fa-10x" [ngClass]="{
+        'c1':currentStyle==1,
+        'c2':currentStyle==2,
+        'c3':currentStyle==3,
+        'c4':currentStyle==4,
+        'c5':currentStyle==5,
+        'c6':currentStyle==6,
+        'c7':currentStyle==7,
+        'c8':currentStyle==8,
+        'c9':currentStyle==9,
+        'c10':currentStyle==10,
+        'c11':currentStyle==11,
+        'c12':currentStyle==12,
+        'c13':currentStyle==13,
+        'c14':currentStyle==14}"></i>
+
+      <!-- Error  -->
+      <div *ngIf="showURLError">
+        <p class=" showError"> The Url you entered is invalid. Please enter a valid Url.</p>
+      </div>
+      <div>
+        <input formControlName="bookmark" class="bmInput" placeholder="Enter Url" [ngClass]="{'inpError':urlFormatError}"
+          #inp (keyup)="checkURL(inp.value)">
+        <label for="favorites" class="favLable">
+          <input type="checkbox" (click)="addFavorite()" id="favorites">Add to favorites</label>
+        <input type="text" formControlName="favorite" class="favorites">
+        <i [ngClass]="{'fas fa-check-circle':!urlFormatError&&inputLength>0 ,'':urlFormatError }"></i>
+        <div class="actionButton">
+          <button mat-raised-button type="submit" class="bmButton addBM">Add Bookmark</button>
+          <button mat-raised-button routerLink="/list" class="bmButton seeBM">View Bookmarks</button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>

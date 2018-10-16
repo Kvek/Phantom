@@ -1,28 +1,63 @@
-
-TODO:ADD CSS
-<div [hidden]="!duplicate">
-  <h2>
-    <u>Bookmark already exists!</u>
-  </h2>
+<div *ngIf="bookMarkList.length>0">
+  <div class="table">
+    <table id="bookmark">
+      <thead class="title">
+        <tr>
+          <td>Bookmarks</td>
+          <td>Favorites</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let items of bookMarkList; let i= index">
+          <td>
+            <span class="tableData">
+              <a href="{{items.bookmark}}" target="_blank">{{items.bookmark}}</a>
+            </span>
+            <div *ngIf="editBM && currEditBM == items">
+              <form (ngSubmit)="updateBM(i, editItem.value)" #updateBookMark="ngForm">
+                <div class="tableEditInput">
+                  <input type="text" ngModel={{items.bookmark}} name="item" class="editInput" #editItem>
+                </div>
+                <div class="tableEditBut">
+                  <button mat-raised-button type="submit" class="update">Update</button>
+                  <button mat-raised-button (click)="currEditBM = null" class="cancel">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </td>
+          <td>
+            <span>
+              <span *ngIf="items.favorite == true"><i class="fas fa-star fa-lg"></i></span>
+              <span *ngIf="items.favorite == false"></span>
+            </span>
+          </td>
+          <td>
+            <span class="itemButtons">
+              <i class="fas fa-pen" (click)="editBookMark(i)"></i>
+              <i class="fas fa-trash-alt" (click)="removeBookMark(i)"></i>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="navigate">
+    <button (click)="currentpage =1; activePage(currentpage)" class="pagination"><i class="fas fa-fast-backward "></i></button>
+    <button (click)="currentpage = currentpage-1; activePage(currentpage)" [disabled]="currentpage ==1" class="pagination">
+      <i class="fas fa-step-backward "></i></button>
+    <button *ngFor="let page of pages" class="pagination pages" [ngClass]="{'isActive': currentpage ==page}" (click)="activePage(page)">{{page}}
+    </button>
+    <button (click)="currentpage = currentpage+1; activePage(currentpage)" [disabled]="currentpage == pages.length"
+      class="pagination">
+      <i class="fas fa-step-forward "></i></button>
+    <button (click)="currentpage = pages.length; activePage(currentpage)" class="pagination"><i class="fas fa-fast-forward "></i></button>
+  </div>
 </div>
-
-<div style="height:500px;border:1px solid">
-  <ul *ngIf="currBMView">
-    <li *ngFor="let item of currBMView; let i = index">
-      <span style="width:80%;display: inline-block;"> {{item}}</span>
-      <button (click)="removeBookMark(item)">x</button>
-      <button (click)="editBookMark(item)">Edit</button>
-      <div *ngIf="editBM && currEditBM == item" style="border:1px solid">
-        <form (ngSubmit)="updateBM(i, updateBookMark.value)" #updateBookMark="ngForm">
-          <input type="text" ngModel={{item}} name="item">
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    </li>
-  </ul>
+<div *ngIf="bookMarkList.length==0" class="empty">
+  <h1>Your bookmark list appears to empty...</h1>
+  <div class="actionButton">
+    <button mat-raised-button routerLink="/" [ngClass]="{'one': currentStyle==1,'two': currentStyle==2, 'three':currentStyle==3,'four':currentStyle==4, 'five':currentStyle==5, 'six':currentStyle==6}">Add
+      Bookmarks</button>
+  </div>
 </div>
-<button [disabled]="currentpage ==1" (click)="currentpage = currentpage-1; activePage(currentpage)" class="pagination">&laquo;</button>
-<div *ngFor="let page of pages" class="pagination">
-  <a (click)="activePage(page)" [ngClass]="{'isActive': currentpage ==page}">{{page}}</a>
-</div>
-<button [disabled]="currentpage ==pages.length" (click)="currentpage = currentpage+1; activePage(currentpage)" class="pagination">&raquo;</button>
