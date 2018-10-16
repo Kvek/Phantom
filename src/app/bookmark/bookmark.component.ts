@@ -76,9 +76,10 @@ export class BookmarkComponent implements OnInit {
   onSubmit() {
     if (this.bookmarks.controls.bookmark.valid) {
       this.bookMarkServ
-        .isValid(this.bookmarks.controls.bookmark.value)
+        .isValid("https://ng-bookmarker.herokuapp.com/"+this.bookmarks.controls.bookmark.value)
         .subscribe(
           data => {
+            console.log(data);
             if (data.status == 200) {
               this.showProgress = true;
               this.bookMarkServ.addBookMark2List(this.bookmarks.value);
