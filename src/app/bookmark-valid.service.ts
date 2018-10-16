@@ -2,14 +2,13 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { throwError, Subject } from "rxjs";
 import { catchError } from "rxjs/operators";
-import { BehaviorSubject } from "rxjs";
+
 @Injectable({
   providedIn: "root"
 })
 export class BookmarkValidService {
   constructor(private http: HttpClient) {}
 
-  // bookmark: Subject<{string}> = new Subject();
   bookmark: Subject<{}> = new Subject();
   currentBookmark = this.bookmark.asObservable();
 

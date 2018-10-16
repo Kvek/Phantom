@@ -10,8 +10,6 @@ export class SubmitPageComponent implements OnInit {
   mydata;
 
   ngOnInit() {
-    this.bmService.currentBookmark.subscribe(
-      data => (( this.mydata = data), console.log(this.mydata))
-    );
+    this.bmService.currentBookmark.subscribe(data => (this.mydata = data));
   }
 }
