@@ -76,7 +76,7 @@ export class BookmarkComponent implements OnInit {
   onSubmit() {
     if (this.bookmarks.controls.bookmark.valid) {
       this.bookMarkServ
-        .isValid("https://ng-bookmarker.herokuapp.com/"+this.bookmarks.controls.bookmark.value)
+        .isValid(this.bookmarks.controls.bookmark.value)
         .subscribe(
           data => {
             console.log(data);

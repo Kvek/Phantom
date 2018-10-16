@@ -102,6 +102,7 @@ thead {
   cursor: pointer;
   outline: none;
   padding: 8px 20px;
+  background-color: transparent;
 }
 
 .pages:not(.isActive):hover {
