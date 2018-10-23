@@ -12,7 +12,7 @@ export class BookmarkComponent implements OnInit {
   constructor(
     private bookMarkServ: BookmarkValidService,
     private router: Router
-  ) {}
+  ) { }
 
   // Form Attributes
   bookmarks: FormGroup;
@@ -28,6 +28,7 @@ export class BookmarkComponent implements OnInit {
   inputLength = 0;
   showProgress = false;
   currentStyle;
+  showFav = false;
 
   regex = /((https?|ftp):\/\/)?(\w+\.)?[\-]?(\w+\.\w+)(.+)?/;
 
@@ -75,25 +76,27 @@ export class BookmarkComponent implements OnInit {
 
   onSubmit() {
     if (this.bookmarks.controls.bookmark.valid) {
+      this.showFav = !this.showFav;
+      this.showProgress = true;
+      console.log(this.bookmarks.controls.bookmark.value);
       this.bookMarkServ
         .isValid(this.bookmarks.controls.bookmark.value)
         .subscribe(
           data => {
             console.log(data);
             if (data.status == 200) {
-              this.showProgress = true;
               this.bookMarkServ.addBookMark2List(this.bookmarks.value);
-              setTimeout(() => {
-                this.router.navigate(["/thanks"]);
-              }, 1000);
+              this.router.navigate(["/thanks"]);
             } else if (data.status != 200) {
               //
               this.showURLError = true;
             }
           },
+
           error => {
             // console.error(error);
             this.showURLError = true;
+            this.showFav = !this.showFav;
           }
         );
     } else if (this.bookmarks.controls.bookmark.invalid) {

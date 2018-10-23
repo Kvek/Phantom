@@ -20,12 +20,10 @@ export class BookmarkListComponent implements OnInit {
   constructor(
     private bookMarkServ: BookmarkValidService,
     private snackbar: MatSnackBar
-  ) {}
+  ) { }
   ngOnInit() {
     // generate a random css class
-
     this.currentStyle = Math.floor(Math.random() * (6 - 1)) + 1;
-    console.log(this.currentStyle);
     this.populateArr();
     this.pageNumber();
     // Set firstpage active on page load.
@@ -53,8 +51,8 @@ export class BookmarkListComponent implements OnInit {
   // Subscribe to observable to receive bookmark
   getData() {
     this.bookMarkServ.currentBookmark.subscribe(data => {
+      console.log(data);
       this.bookMarkList.push(data);
-      console.log(this.bookMarkList);
       localStorage.setItem("bookMarks", JSON.stringify(this.bookMarkList));
     });
   }
@@ -81,9 +79,7 @@ export class BookmarkListComponent implements OnInit {
 
   // Update bookmark
   updateBM(index, bookmark) {
-    console.log(bookmark);
     this.bookMarkList[index].bookmark = bookmark;
-    console.log(this.bookMarkList);
 
     // Angular Material Notification Component
     this.snackbar.open("Updated", "Dismiss", {
@@ -97,6 +93,19 @@ export class BookmarkListComponent implements OnInit {
   // Activating the page on click
   activePage(page) {
     this.currentpage = page;
+    this.currBMView = this.bookMarkList;
     this.currBMView = this.bookMarkList.slice((page - 1) * 20, page * 20);
+  }
+
+  deleteAll() {
+    let conf = confirm("Are you sure you want to remove all Bookmarks?");
+    if (conf == true) {
+      this.bookMarkList.length = 0;
+      localStorage.setItem("bookMarks", JSON.stringify(this.bookMarkList));
+      // Angular Material Notification Component
+      this.snackbar.open("Deleted", "Dismiss", {
+        duration: 2000
+      });
+    } else return;
   }
 }

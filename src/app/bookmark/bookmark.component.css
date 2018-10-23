@@ -158,3 +158,8 @@ mat-progress-bar {
 input[type="checkbox"] {
   margin-right: 5px;
 }
+.fa-spinner{
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1.5em !important;
+}

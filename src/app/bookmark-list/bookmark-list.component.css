@@ -197,3 +197,13 @@ thead {
 h1 {
   margin-left: 60px;
 }
+
+.deleteAll {
+  color: rgb(236, 32, 18);
+  opacity: 0;
+  margin-left: 20px;
+}
+
+.deleteAll:hover {
+  opacity: .9;
+}

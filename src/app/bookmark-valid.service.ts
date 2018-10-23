@@ -7,7 +7,7 @@ import { catchError } from "rxjs/operators";
   providedIn: "root"
 })
 export class BookmarkValidService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   bookmark: Subject<{}> = new Subject();
   currentBookmark = this.bookmark.asObservable();
@@ -18,7 +18,8 @@ export class BookmarkValidService {
   }
   isValid(bookmark) {
     return this.http
-      .get(bookmark, {
+      // "https://cors-anywhere.herokuapp.com/" temporary hack to remove CORS problem
+      .get("https://cors-anywhere.herokuapp.com/" + bookmark, {
         observe: "response",
         responseType: "text"
       })

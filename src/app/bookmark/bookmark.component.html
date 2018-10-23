@@ -26,8 +26,10 @@
       <div>
         <input formControlName="bookmark" class="bmInput" placeholder="Enter Url" [ngClass]="{'inpError':urlFormatError}"
           #inp (keyup)="checkURL(inp.value)">
-        <label for="favorites" class="favLable">
-          <input type="checkbox" (click)="addFavorite()" id="favorites">Add to favorites</label>
+        <i class="fas fa-spinner fa-pulse" [ngClass]="{favorites: !showFav}"></i>
+        <label for="favorites" class="favLable" [ngClass]="{favorites: showFav}">
+          <input type="checkbox" (click)="addFavorite()" id="favorites">Add to favorites
+        </label>
         <input type="text" formControlName="favorite" class="favorites">
         <i [ngClass]="{'fas fa-check-circle':!urlFormatError&&inputLength>0 ,'':urlFormatError }"></i>
         <div class="actionButton">
