@@ -95,6 +95,7 @@ export class BookmarkComponent implements OnInit {
             // console.error(error);
             this.showURLError = true;
             this.showFav = !this.showFav;
+            this.showProgress = false;
           }
         );
     } else if (this.bookmarks.controls.bookmark.invalid) {
