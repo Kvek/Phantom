@@ -51,7 +51,6 @@ export class BookmarkListComponent implements OnInit {
   // Subscribe to observable to receive bookmark
   getData() {
     this.bookMarkServ.currentBookmark.subscribe(data => {
-      console.log(data);
       this.bookMarkList.push(data);
       localStorage.setItem("bookMarks", JSON.stringify(this.bookMarkList));
     });

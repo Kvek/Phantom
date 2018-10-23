@@ -78,12 +78,10 @@ export class BookmarkComponent implements OnInit {
     if (this.bookmarks.controls.bookmark.valid) {
       this.showFav = !this.showFav;
       this.showProgress = true;
-      console.log(this.bookmarks.controls.bookmark.value);
       this.bookMarkServ
         .isValid(this.bookmarks.controls.bookmark.value)
         .subscribe(
           data => {
-            console.log(data);
             if (data.status == 200) {
               this.bookMarkServ.addBookMark2List(this.bookmarks.value);
               this.router.navigate(["/thanks"]);
